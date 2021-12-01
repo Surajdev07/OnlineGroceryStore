@@ -1,0 +1,31 @@
+package com.onlinesweetshopapi.serviceimpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onlinesweetshopapi.domain.Category;
+import com.onlinesweetshopapi.repository.CategoryRepository;
+import com.onlinesweetshopapi.service.CategoryService;
+
+@Service
+public class CategoryServiceImpl implements CategoryService {
+
+	@Autowired
+	CategoryRepository categoryRepository;
+
+	@Override
+	public Category save(Category category) {
+		// TODO Auto-generated method stub
+		return categoryRepository.save(category);
+	}
+
+	@Override
+	public Category findCategoryByCategoryName(String categoryName) {
+		// TODO Auto-generated method stub
+		Category category = categoryRepository.findByCategoryName(categoryName);
+		return category;
+	}
+	
+	
+	
+}

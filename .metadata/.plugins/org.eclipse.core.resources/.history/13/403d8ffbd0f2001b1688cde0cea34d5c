@@ -1,0 +1,5 @@
+package com.onlinesweetshopapi.config;
+
+public class SwagerConfig {
+
+}

@@ -1,0 +1,101 @@
+package com.onlinesweetshopapi.domain;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+
+@Entity
+public class Customer {
+	
+	//userId, name, id, password, emailId, order, event
+	@Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@NotBlank(message="Customer Name is Required")
+	private String customerName;
+	@NotBlank(message="Customer Id is Required")
+	@Size(min = 4, max = 5, message = "Size must be between 4 to 5 character")
+	@Column(unique = true,updatable = false)
+	private String customerId;
+	@NotBlank(message="Customer Password is Required")
+	private String customerPassword;
+	@NotBlank(message="Customer Email is Required")
+	private String customerEmail;
+	private int isloggedIn;
+	
+	@ManyToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	   @JoinTable(name = "customers_orders",
+       joinColumns = {
+               @JoinColumn(name = "customer_id", referencedColumnName = "id",
+                       nullable = false)},
+       inverseJoinColumns = {
+               @JoinColumn(name = "order_id", referencedColumnName = "id",
+                       nullable = false)})
+	private List<Order> orders= new ArrayList<>();
+	
+	
+
+	public int getIsloggedIn() {
+		return isloggedIn;
+	}
+	public void setIsloggedIn(int isloggedIn) {
+		this.isloggedIn = isloggedIn;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	public String getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+	public String getCustomerPassword() {
+		return customerPassword;
+	}
+	public void setCustomerPassword(String customerPassword) {
+		this.customerPassword = customerPassword;
+	}
+	public String getCustomerEmail() {
+		return customerEmail;
+	}
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
+	}
+	
+
+	public Customer() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "Customer [customerName=" + customerName + ", customerId=" + customerId + ", customerPassword="
+				+ customerPassword + ", customerEmail=" + customerEmail + "]";
+	}
+	
+	
+	
+}

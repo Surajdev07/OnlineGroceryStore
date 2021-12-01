@@ -1,0 +1,62 @@
+package com.onlinesweetshopapi.serviceimpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onlinesweetshopapi.domain.Customer;
+import com.onlinesweetshopapi.domain.Event;
+import com.onlinesweetshopapi.exception.CustomerIdException;
+import com.onlinesweetshopapi.repository.CustomerRepository;
+import com.onlinesweetshopapi.repository.EventRepository;
+import com.onlinesweetshopapi.service.CustomerService;
+@Service
+public class CustomerServiceImpl implements CustomerService {
+	
+	@Autowired
+	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private EventRepository eventRepository;
+	
+	public Customer saveOrUpdate(Customer customer) {
+		// TODO Auto-generated method stub
+		Event event = new Event();
+		customer.setEvent(event);
+		return customerRepository.save(customer);
+	}
+
+	@Override
+	public Iterable<Customer> findAllCustomers() {
+		return customerRepository.findAll();
+	}
+
+	@Override
+	public Customer findCustomerByCustomerId(String customerId) {
+		Customer customer= customerRepository.findByCustomerId(customerId.toUpperCase());
+		System.out.println("Customer Json response"+customer);
+		return customer;
+	}
+	
+	@Override
+	public void deleteCustomerByCustomerId(String customerId) {
+		Customer customer= customerRepository.findByCustomerId(customerId.toUpperCase());
+		if(customer==null) {
+			throw new CustomerIdException("Can not delete customer with customer id "+customerId.toUpperCase()+". This id does not exist");
+		}
+		customerRepository.delete(customer);
+	}
+	
+	@Override
+	public Customer updateByCustomerId(String customerId, int isloggedIn) {
+	
+	Customer customer=	findCustomerByCustomerId(customerId);
+	customer.setIsloggedIn(isloggedIn);
+		return customerRepository.save(customer);
+	}
+	
+
+
+
+	
+
+}

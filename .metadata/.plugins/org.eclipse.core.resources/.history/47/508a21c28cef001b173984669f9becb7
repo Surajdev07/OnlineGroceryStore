@@ -1,0 +1,13 @@
+package com.onlinesweetshopapi.repository;
+
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.onlinesweetshopapi.domain.Sweet;
+
+@Repository
+public interface SweetRepository extends CrudRepository<Sweet, Long> {
+	
+	
+}

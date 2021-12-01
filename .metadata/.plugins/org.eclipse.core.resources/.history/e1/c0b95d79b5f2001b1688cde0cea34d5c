@@ -1,0 +1,23 @@
+package com.onlinesweetshopapi.exception;
+
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+public class EventIDException extends RuntimeException {
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public EventIDException()
+	 {
+		 super();
+	 }
+	 
+	 public EventIDException(String errMsg) {
+		 super(errMsg);
+		 
+	 }
+
+}

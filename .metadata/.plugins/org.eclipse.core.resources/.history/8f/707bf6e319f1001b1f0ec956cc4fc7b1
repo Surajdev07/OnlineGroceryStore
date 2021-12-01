@@ -1,0 +1,70 @@
+package com.onlinesweetshopapi.serviceimpl;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onlinesweetshopapi.domain.Category;
+import com.onlinesweetshopapi.domain.Sweet;
+import com.onlinesweetshopapi.exception.SweetIDException;
+import com.onlinesweetshopapi.repository.CategoryRepository;
+import com.onlinesweetshopapi.repository.SweetRepository;
+import com.onlinesweetshopapi.service.SweetService;
+
+@Service
+public class SweetServiceImpl implements SweetService {
+
+	@Autowired
+	private SweetRepository sweetRepository;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
+	
+	@Override
+	public Sweet save(Sweet sweet){
+		// TODO Auto-generated method stub
+		sweet.setSweetIdentifier(sweet.getSweetIdentifier().toUpperCase()); 
+		try { 
+			String categoryIdentifier = sweet.getCategoryIdentifier();
+			Category category = categoryRepository.findByCategoryIdentifier(categoryIdentifier);
+			int categoryId =  category.getCategoryId();
+			sweet.setCategory(category);
+			return sweetRepository.save(sweet); 
+		}
+		catch(Exception e)
+		{
+			throw new SweetIDException("Sweet"+ sweet.getSweetIdentifier() + " cannot be entered.");
+			
+		}
+	}
+
+	@Override
+	public Iterable<Sweet> getSweets() {
+		// TODO Auto-generated method stub
+		return sweetRepository.findAll();
+	}
+
+	@Override
+	public Sweet findSweetBySweetIdentifier(String sweetIdentifier) {
+		// TODO Auto-generated method stub
+		Sweet sweet = sweetRepository.findBySweetIdentifier(sweetIdentifier);
+		return sweet;
+	}
+
+	@Override
+	public void deleteSweetBySweetIdentifier(String sweetIdentifier) {
+		// TODO Auto-generated method stub
+		Sweet sweet = sweetRepository.findBySweetIdentifier(sweetIdentifier.toUpperCase());
+		if(sweet==null)
+		{
+			throw new SweetIDException(sweetIdentifier +" This sweet does not exist");
+		}
+		sweetRepository.delete(sweet);
+		
+	}
+
+
+	
+
+}

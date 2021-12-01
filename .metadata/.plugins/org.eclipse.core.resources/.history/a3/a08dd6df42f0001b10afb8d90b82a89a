@@ -1,0 +1,11 @@
+package com.onlinesweetshopapi.service;
+
+import com.onlinesweetshopapi.domain.Category;
+import com.onlinesweetshopapi.domain.Sweet;
+
+public interface CategoryService {
+
+	public Category save(Category category);
+	public Category findCategoryByCategoryName(String categoryName);
+	public void deleteCategoryByCategoryName(String categoryName);
+}

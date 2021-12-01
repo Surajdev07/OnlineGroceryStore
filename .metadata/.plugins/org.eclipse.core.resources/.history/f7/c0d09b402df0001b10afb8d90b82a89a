@@ -1,0 +1,8 @@
+package com.onlinesweetshopapi.service;
+
+import com.onlinesweetshopapi.domain.Category;
+
+public interface CategoryService {
+
+	public Category save(Category category);
+}

@@ -1,0 +1,39 @@
+package com.onlinesweetshopapi.serviceimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onlinesweetshopapi.domain.Sweet;
+import com.onlinesweetshopapi.repository.SweetRepository;
+import com.onlinesweetshopapi.service.SweetService;
+
+@Service
+public class SweetServiceImpl implements SweetService {
+
+	@Autowired
+	private SweetRepository sweetRepository;
+	
+	@Override
+	public Sweet save(Sweet sweet) {
+		// TODO Auto-generated method stub
+		return sweetRepository.save(sweet);
+	
+	}
+
+	@Override
+	public Iterable<Sweet> getSweets() {
+		// TODO Auto-generated method stub
+		return sweetRepository.findAll();
+	}
+
+	@Override
+	public void deleteSweetBySweetId(String sweetName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+}
