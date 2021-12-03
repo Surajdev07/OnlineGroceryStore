@@ -1,0 +1,5 @@
+package com.onlinesweetshopapi.domain;
+
+public class Sweet {
+
+}

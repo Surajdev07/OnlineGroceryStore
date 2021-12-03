@@ -1,0 +1,30 @@
+package com.onlinesweetshopapi.web;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+
+@ComponentScan("AdminController.class")
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers =AdminController.class)
+
+class AdminControllerTest {
+
+	@Autowired
+	MockMvc mockMvc;
+	
+	@Test
+	void test_getAdminByAdminIdentifier() throws Exception{
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/admins/ADMIN1"))
+				.andExpect(status().isOk());
+	}
+
+}

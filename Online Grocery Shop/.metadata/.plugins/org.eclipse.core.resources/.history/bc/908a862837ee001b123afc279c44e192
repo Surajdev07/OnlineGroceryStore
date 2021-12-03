@@ -1,0 +1,14 @@
+package com.onlinesweetshopapi.serviceimpl;
+
+import com.onlinesweetshopapi.domain.Sweet;
+import com.onlinesweetshopapi.service.SweetService;
+
+public class SweetServiceImpl implements SweetService {
+
+	@Override
+	public Sweet createOrUpdate(Sweet sweet) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.onlinesweetshopapi.exception;
+
+public class CategoryIDException {
+
+}

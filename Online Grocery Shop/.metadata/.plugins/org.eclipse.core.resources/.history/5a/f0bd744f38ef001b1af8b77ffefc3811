@@ -1,0 +1,11 @@
+package com.onlinesweetshopapi.service;
+
+import java.util.List;
+
+import com.onlinesweetshopapi.domain.Sweet;
+
+public interface SweetService {
+
+	public Sweet save(Sweet sweet);
+	public Iterable<Sweet> getSweets();
+}

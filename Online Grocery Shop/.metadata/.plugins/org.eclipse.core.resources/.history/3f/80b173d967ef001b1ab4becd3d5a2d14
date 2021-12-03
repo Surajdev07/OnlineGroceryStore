@@ -1,0 +1,5 @@
+package com.onlinesweetshopapi.service;
+
+public class MapValidationErrorService {
+
+}

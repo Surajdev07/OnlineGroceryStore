@@ -1,0 +1,21 @@
+package com.onlinesweetshopapi.exception;
+
+public class ProjectIDExceptionResponse {
+	
+	private String sweetIdentifer;
+	
+	public ProjectIDExceptionResponse(String sweetIdentifer) {
+		super();
+		this.sweetIdentifer = sweetIdentifer;
+	}
+
+	public String getSweetIdentifer() {
+		return sweetIdentifer;
+	}
+
+	public void setSweetIdentifer(String sweetIdentifer) {
+		this.sweetIdentifer = sweetIdentifer;
+	}
+	
+	
+}
