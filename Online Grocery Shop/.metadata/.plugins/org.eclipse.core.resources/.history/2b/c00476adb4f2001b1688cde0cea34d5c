@@ -1,5 +1,0 @@
-package com.onlinesweetshopapi.exception;
-
-public class CategoryIDExceptionResponse {
-
-}

@@ -1,8 +1,0 @@
-package com.onlinesweetshopapi.service;
-
-import com.onlinesweetshopapi.domain.Sweet;
-
-public interface SweetService {
-
-	public Sweet createOrUpdate(Sweet sweet);
-}
